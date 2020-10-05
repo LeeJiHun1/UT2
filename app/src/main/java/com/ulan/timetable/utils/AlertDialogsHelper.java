@@ -40,6 +40,8 @@ import java.util.regex.Pattern;
  */
 public class AlertDialogsHelper {
 
+
+
     public static void getEditSubjectDialog(final Activity activity, final View alertLayout, final ArrayList<Week> adapter, final ListView listView, int position) {
         final HashMap<Integer, EditText> editTextHashs = new HashMap<>();
         final EditText subject = alertLayout.findViewById(R.id.subject_dialog);

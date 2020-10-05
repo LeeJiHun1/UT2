@@ -28,6 +28,7 @@ public class MondayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_monday, container, false);
         setupAdapter(view);
         setupListViewMultiSelect();
+
         popup = view.findViewById(R.id.popupbtn);
         return view;
     }

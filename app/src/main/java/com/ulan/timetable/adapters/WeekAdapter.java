@@ -2,9 +2,12 @@ package com.ulan.timetable.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.ulan.timetable.adapters.NetworkAdapter;
 import com.ulan.timetable.R;
 import com.ulan.timetable.model.Week;
 import com.ulan.timetable.utils.AlertDialogsHelper;
@@ -101,7 +106,12 @@ public class WeekAdapter extends ArrayAdapter<Week> {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.delete_popup:
+                                Log.i("URL", "fsafsa");
+
+                                String URL_1 = db.returnURL(getItem(position));
+
                                 db.deleteWeekById(getItem(position));
+
                                 db.updateWeek(getItem(position));
                                 weeklist.remove(position);
                                 notifyDataSetChanged();
@@ -110,6 +120,12 @@ public class WeekAdapter extends ArrayAdapter<Week> {
                                 final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_subject, null);
                                 AlertDialogsHelper.getEditSubjectDialog(mActivity, alertLayout, weeklist, mListView, position);
                                 notifyDataSetChanged();
+                                return true;
+                            case R.id.link_popup:
+                                Log.i("URL", "asdf");
+                                String URL_2 = db.returnURL(getItem(position));
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_2));
+
                                 return true;
                             default:
                                 return onMenuItemClick(item);

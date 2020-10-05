@@ -91,6 +91,20 @@ public class DbHelper extends SQLiteOpenHelper{
         db.close();
     }
 
+    public String returnURL(Week week){
+        Log.i("URL", "");
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Log.i("URL", "");
+
+        String where = new String();
+        where = String.valueOf(week.getId());
+
+        Cursor url = db.rawQuery("SELECT WEEK_URL WHERE id = "+ where ,null);
+        String geturl = url.getString(0);
+        Log.i("URL", geturl);
+        return geturl;
+    }
     public void updateWeek(Week week) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -120,15 +134,11 @@ public class DbHelper extends SQLiteOpenHelper{
             week.setFromTime(cursor.getString(cursor.getColumnIndex(WEEK_FROM_TIME)));
             week.setToTime(cursor.getString(cursor.getColumnIndex(WEEK_TO_TIME)));
             week.setColor(cursor.getInt(cursor.getColumnIndex(WEEK_COLOR)));
-            week.setUrl("www.naver.com");
+            week.setUrl(cursor.getString(cursor.getColumnIndex(WEEK_URL)));
             Log.i("data124", week.getUrl());
           //  week.setUrl(cursor.getString(cursor.getColumnIndex(WEEK_URL)));
             weeklist.add(week);
         }
         return  weeklist;
     }
-
-    /**
-     * Methods for Homeworks activity
-     **/
 }

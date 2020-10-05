@@ -36,6 +36,7 @@ public class WeekAdapter extends ArrayAdapter<Week> {
     private ListView mListView;
 
     private static class ViewHolder {
+        TextView subject_url;
         TextView subject;
         TextView teacher;
         TextView time;
@@ -62,8 +63,8 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         String time_to = Objects.requireNonNull(getItem(position)).getToTime();
         String room = Objects.requireNonNull(getItem(position)).getRoom();
         int color = getItem(position).getColor();
-
-        week = new Week(subject, teacher, room, time_from, time_to, color);
+        String url = "http://www.naver.com1";
+        week = new Week(subject, teacher, room, time_from, time_to, color, url);
         final ViewHolder holder;
 
         if(convertView == null){
@@ -75,6 +76,8 @@ public class WeekAdapter extends ArrayAdapter<Week> {
             holder.time = convertView.findViewById(R.id.time);
             holder.room = convertView.findViewById(R.id.room);
             holder.popup = convertView.findViewById(R.id.popupbtn);
+            holder.subject_url = convertView.findViewById(R.id.subject_url);
+
             holder.cardView = convertView.findViewById(R.id.week_cardview);
             convertView.setTag(holder);
         }
@@ -86,6 +89,7 @@ public class WeekAdapter extends ArrayAdapter<Week> {
         holder.teacher.setText(week.getTeacher());
         holder.room.setText(week.getRoom());
         holder.time.setText(week.getFromTime() + " - " + week.getToTime());
+//        holder.subject_url.setText(week.getUrl());
         holder.cardView.setCardBackgroundColor(week.getColor());
         holder.popup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +106,6 @@ public class WeekAdapter extends ArrayAdapter<Week> {
                                 weeklist.remove(position);
                                 notifyDataSetChanged();
                                 return true;
-
                             case R.id.edit_popup:
                                 final View alertLayout = mActivity.getLayoutInflater().inflate(R.layout.dialog_add_subject, null);
                                 AlertDialogsHelper.getEditSubjectDialog(mActivity, alertLayout, weeklist, mListView, position);

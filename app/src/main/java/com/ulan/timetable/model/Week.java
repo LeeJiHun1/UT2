@@ -5,18 +5,19 @@ package com.ulan.timetable.model;
  */
 public class Week {
 
-    private String subject, fragment, teacher, room, fromtime, totime, time;
+    private String subject, fragment, teacher, room, fromtime, totime, time, url;
     private int id, color;
 
     public Week() {}
 
-    public Week(String subject, String teacher, String room, String fromtime, String totime, int color) {
+    public Week(String subject, String teacher, String room, String fromtime, String totime, int color, String url) {
         this.subject = subject;
         this.teacher = teacher;
         this.room = room;
         this.fromtime = fromtime;
         this.totime = totime;
         this.color = color;
+        this.url = url;
     }
 
     public int getId() {
@@ -94,4 +95,8 @@ public class Week {
     public void setColor(int color) {
         this.color = color;
     }
+
+    public String getUrl(){ return url;}
+
+    public void setUrl(String url){this.url = url;}
 }

@@ -28,27 +28,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity
-            android:name=".activities.HomeworksActivity"
-            android:label="@string/homeworks"
-            android:parentActivityName=".activities.MainActivity" />
-
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".activities.HomeworksActivity" />
 
-        <activity
-            android:name=".activities.NotesActivity"
-            android:label="Notes"
-            android:parentActivityName=".activities.MainActivity" />
-        <activity
-            android:name=".activities.NoteInfoActivity"
-            android:label="Notes"
-            android:parentActivityName=".activities.NotesActivity" />
-        <activity
-            android:name=".activities.TeachersActivity"
-            android:label="Teachers"
-            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.SettingsActivity"
             android:label="Settings"
@@ -57,24 +40,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity
-            android:name=".activities.ExamsActivity"
-            android:label="Exams"
-            android:parentActivityName=".activities.MainActivity" />
 
         <receiver
             android:name=".utils.DailyReceiver"
             android:enabled="true" />
-
-        <receiver
-            android:name=".utils.WakeUpAlarmReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-        </receiver>
 
     </application>
 
